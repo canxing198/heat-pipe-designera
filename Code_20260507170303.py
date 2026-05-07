@@ -1,6 +1,6 @@
 import streamlit as st
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 st.set_page_config(page_title="热管参数设计", layout="wide")
 st.title("🌡️ 热管参数设计与仿真系统")
