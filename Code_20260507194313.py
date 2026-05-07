@@ -5,7 +5,7 @@ def flattened_geometry(D_out, t_wall, b_flat):
     a = D_in
     b = b_flat
 
-    Dh = 2 * a * b / (a + b)
+    Dh = 2 * D_in * b / (D_in + b)
     t_wick = (b - Dh) / 2
     A_flow = a * b
 
