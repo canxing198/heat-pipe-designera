@@ -1,5 +1,5 @@
 import streamlit as st
-from limits import allowed_power
+from limits import flattened_geometry
 from window import process_window
 from database import init_db, save, load_df
 
