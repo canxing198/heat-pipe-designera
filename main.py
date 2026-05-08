@@ -1,5 +1,5 @@
 import streamlit as st
-from heat_pipe_designer.window import create_process_window
+from window import create_process_window
 from design import design_engine
 
 st.set_page_config(page_title="热管研发 Web 平台", layout="wide")
