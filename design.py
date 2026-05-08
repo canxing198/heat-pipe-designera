@@ -4,6 +4,10 @@ from boiling import check_boiling
 
 def design_engine(inputs):
     # 几何
+    if "D_out" not in inputs:
+    st.warning("缺少 'D_out' 参数，将使用默认值 8.0 mm") # 如果是 Streamlit 可以用 st.warning
+    D_out = 8.0  # 给个默认的外径
+else:
     D_out = inputs["D_out"]
     t_wall = inputs["t_wall"]
     b_flat = inputs["b_flat"]
