@@ -18,7 +18,7 @@ with st.sidebar:
 inputs = dict(
     Q=Q, L=L, D_out=D_out,
     b_flat=b_flat, A_evap=A_evap, T_v=T_v,
-    t_wall=0.4e-3
+    t_wall=0.4e-3，
 )
 
 tab1, tab2 = st.tabs(["📐 参数设计", "📊 工艺窗口"])
