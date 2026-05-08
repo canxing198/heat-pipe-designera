@@ -24,7 +24,7 @@ inputs = dict(
 tab1, tab2 = st.tabs(["📐 参数设计", "📊 工艺窗口"])
 
 with tab1:
-    if 'design_result' not in st.session_state:
+if 'design_result' not in st.session_state:
     st.session_state.design_result = None
 
 # 在“开始设计”按钮点击时，保存结果到 session_state
