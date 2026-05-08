@@ -29,7 +29,7 @@ with tab1:
 
 # 先检查 res 是否存在且包含 'status' 键
 if res and isinstance(res, dict) and res.get("status") == "OK":
-    st.success("✅ 设计成功")
+st.success("✅ 设计成功")
     st.json(res)
 else:
     # 如果出错，显示具体的报错信息
