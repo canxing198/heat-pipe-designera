@@ -26,10 +26,14 @@ tab1, tab2 = st.tabs(["📐 参数设计", "📊 工艺窗口"])
 with tab1:
     if st.button("🚀 开始设计"):
         res = design_engine(inputs)
-        if res["status"]!="OK":
-            st.error(res["reason"])
-        else:
-            st.success("✅ 设计成功")
+
+# 先检查 res 是否存在且包含 'status' 键
+if res and isinstance(res, dict) and res.get("status") == "OK":
+    st.success("✅ 设计成功")
+    st.json(res)
+else:
+    # 如果出错，显示具体的报错信息
+    st.error(f"❌ 设计失败: {res.get('reason', '未知错误') if res else '函数未返回数据'}")
             st.json(res)
 
             if st.button("📥 导出 Excel 工艺卡"):
