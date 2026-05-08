@@ -2,7 +2,10 @@ import numpy as np
 from scipy.optimize import fsolve
 from copper_powder import match_copper_powder
 from boiling import check_boiling
-
+print("DEBUG: 接收到的 inputs =", inputs)
+print("DEBUG: Q =", inputs.get('Q'), type(inputs.get('Q')))
+print("DEBUG: A_evap =", inputs.get('A_evap'), type(inputs.get('A_evap')))
+print("DEBUG: t_wick_max =", inputs.get('t_wick_max'), type(inputs.get('t_wick_max')))
 def design_engine(inputs):
     D_out = inputs["D_out"]
     t_wall = inputs["t_wall"]
