@@ -1,5 +1,4 @@
-matplotlib
+scipy>=1.10.0
 numpy
-streamlit
-plotly
 pandas
+# ... 其他库
