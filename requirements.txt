@@ -2,3 +2,5 @@ scipy>=1.10.0
 numpy
 pandas
 # ... 其他库
+pandas
+openpyxl
