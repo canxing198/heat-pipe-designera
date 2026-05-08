@@ -11,9 +11,16 @@ def design_engine(inputs):
     t_wall = inputs["t_wall"]
     b_flat = inputs["b_flat"]
     L = inputs["L"]
-    Q = inputs["Q"]
-    A_evap = inputs["A_evap"]
-    T_v = inputs["T_v"]
+   Q = float(inputs.get('heat_load', 0))
+    A_evap = float(inputs.get('area', 0))
+    t_wick_max = float(inputs.get('wick_thickness', 0))
+    T_v = float(inputs.get('vapor_temp', 0))
+    
+    ok, Q_boil = check_boiling(Q, A_evap, t_wick_max, T_v)
+except ValueError as e:
+    # 如果转换失败（比如用户输入了字母），给个默认值或报错提示
+    st.error(f"输入参数必须是数字: {e}")
+    ok, Q_boil = False, 0
 
     # ===== 几何 =====
     D_in = D_out - 2*t_wall
