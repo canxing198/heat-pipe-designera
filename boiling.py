@@ -5,7 +5,9 @@ def check_boiling(q_prime, A_evap, T_v, P_vac, h_fg):
     校验热管的沸腾极限
     """
     # 这里先返回一个模拟数据，后续再补全真实逻辑
-    print(f"正在校验沸腾极限：热流密度={q_prime}, 蒸发面积={A_evap}")
+    if t_wick_max is None or t_wick_max == 0:
+    return False, 0  # 或者抛出一个更明确的异常
+result = Q / t_wick_max
     
     # 模拟返回的结果
     result = {
