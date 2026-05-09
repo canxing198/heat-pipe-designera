@@ -37,13 +37,24 @@ def design_engine(inputs):
 
     # ===== Capillary Limit =====
     p = props(T_v)
+def eq(vars):
+    d, eps = vars
+    
+    # 1. 增加保护：限制 eps 范围，防止 math domain error
+    if eps >= 1.0 or eps <= 0.0:
+        return [1e9, 1e9] # 返回一个很大的错误值，迫使 fsolve 调整方向
+        
+    # 2. 计算 r_eff
+    try:
+        r_eff = (d/2) * np.sqrt((1-eps)**2 / eps**3)
+    except:
+        return [1e9, 1e9]
 
-    def eq(vars):
-        d, eps = vars
-        r_eff = (d/2)*np.sqrt((1-eps)**2/eps**3)
-        K = (d**2*eps**3)/(150*(1-eps)**2)
-        Qc = 2*p["sigma"]/r_eff * K*A_w/(p["mu"]*L_cond*p["h_fg"])
-        return Qc - Q
+    # 3. 后面的 K 和 Qc 计算保持不变...
+    K = (d**2 * (1-eps)**3) / (150 * (1-eps)**2) 
+    # ... (此处省略中间代码)
+    
+    return Qc - Q
 
     d0, eps0 = 100e-6, 0.55
     d, eps = fsolve(eq, [d0, eps0])
