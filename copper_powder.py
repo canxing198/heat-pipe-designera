@@ -1,18 +1,19 @@
-# copper_powder.py
-
-def match_copper_powder(target_porosity, target_thickness):
+def match_copper_powder(target_d, target_eps):
     """
-    根据目标孔隙率和厚度，匹配最接近的铜粉规格
+    Matches copper powder specifications based on target diameter and porosity.
+    Returns a list of possible matches.
     """
-    # 这里先返回一个模拟数据，后续再补全真实逻辑
-    print(f"正在匹配铜粉：孔隙率={target_porosity}, 厚度={target_thickness}")
+    # Mock database of available powders
+    powder_db = [
+        {"grade": "CP-100", "d50_um": 100, "eps_range": (0.50, 0.60)},
+        {"grade": "CP-80", "d50_um": 80, "eps_range": (0.52, 0.62)},
+        {"grade": "CP-150", "d50_um": 150, "eps_range": (0.45, 0.55)},
+    ]
     
-    # 模拟返回的数据
-    matched_data = {
-        "name": "模拟铜粉",
-        "porosity": target_porosity,
-        "thickness": target_thickness,
-        "status": "Matched (Mock)"
-    }
-    
-    return matched_data
+    matches = []
+    for p in powder_db:
+        if abs(p["d50_um"] * 1e-6 - target_d) < 30e-6 and \
+           p["eps_range"][0] <= target_eps <= p["eps_range"][1]:
+            matches.append(p)
+            
+    return matches
