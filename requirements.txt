@@ -1,6 +1,6 @@
-scipy>=1.10.0
+streamlit
 numpy
-pandas
-# ... 其他库
+scipy
+plotly
 pandas
 openpyxl
