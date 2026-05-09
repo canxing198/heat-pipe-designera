@@ -1,16 +1,21 @@
-# window.py
+import plotly.graph_objects as go
+import numpy as np
 
-def create_process_window():
+def create_process_window(inputs):
     """
-    创建三维工艺窗口的 UI 组件
+    Generates a mock 3D process window for demonstration.
+    Replace with actual calculation logic later.
     """
-    # 这里先返回一个模拟数据，后续再补全真实逻辑
-    print("正在创建工艺窗口...")
+    fill_range = np.linspace(0.6, 1.2, 25)
+    vac_range = np.linspace(10, 1000, 25)
+    FF, VV = np.meshgrid(fill_range, vac_range)
     
-    # 模拟返回的结果
-    result = {
-        "status": "Window Created (Mock)",
-        "components": ["Slider", "Input", "Button"]
-    }
+    # Mock calculation: Higher vacuum and moderate fill ratio gives higher power
+    Q_surface = 100 * (1 - np.exp(-(FF - 0.6)**2 / 0.1)) * (1 - VV / 1500)
     
-    return result
+    fig = go.Figure(data=[go.Surface(x=FF, y=VV, z=Q_surface, colorscale='Viridis')])
+    fig.update_layout(
+        title="热管三维工艺窗口 (模拟数据)",
+        scene=dict(xaxis_title="充液系数", yaxis_title="真空度 (Pa)", zaxis_title="Qmax (W)")
+    )
+    return fig
