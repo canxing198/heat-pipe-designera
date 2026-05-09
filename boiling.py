@@ -1,14 +1,8 @@
-def check_boiling(Q, A_evap, t_wick, T_v):
+def check_boiling(Q, A_evap, t_wick_max, T_v):
     """
-    Simple boiling limit check.
-    Returns: (ok: bool, Q_boil: float)
+    简化沸腾极限校验
     """
-    # Simplified model: Assume a max heat flux based on wick thickness
-    # This is a placeholder model for demonstration
-    q_max = 50e4  # W/m² (example value)
-    Q_boil = q_max * A_evap
-    
-    # Add a safety margin
-    ok = Q < Q_boil * 0.8
-    
-    return ok, Q_boil
+    q_max = 80e4  # W/m²
+    q_actual = Q / A_evap
+    ok = q_actual < q_max
+    return ok, q_max
