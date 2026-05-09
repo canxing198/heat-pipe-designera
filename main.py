@@ -35,14 +35,17 @@ with st.sidebar:
             st.session_state.res = res
 
 if "res" in st.session_state:
-    res = st.session_state.res
-    if res["status"] == "OK":
-        st.success("✅ 设计成功")
-        st.json(res)
-        if st.button("📥 导出 Excel"):
-            export_excel(res)
-    else:
-        st.error(f"❌ 设计失败: {res['reason']}")
+   res = design_engine(inputs)
+
+# 👇 增加安全检查
+if res is None:
+    st.error("❌ 设计计算失败：引擎未返回结果，请检查参数或后端日志。")
+    st.stop()  # 停止运行，避免后续报错
+
+if res["status"] == "OK":
+    # ... 正常显示结果 ...
+else:
+    st.error(f"❌ 设计失败: {res.get('reason', '未知错误')}")
         st.json(res)
 
 create_process_window(inputs)
