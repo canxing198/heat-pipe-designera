@@ -42,8 +42,7 @@ def design_engine(inputs):
         d, eps = vars
         r_eff = (d/2)*np.sqrt((1-eps)**2/eps**3)
         K = (d**2*eps**3)/(150*(1-eps)**2)
-        L_eff = L_cond
-        Qc = 2*p["sigma"]/r_eff * K*A_w/(p["mu"]*L_eff*p["h_fg"])
+        Qc = 2*p["sigma"]/r_eff * K*A_w/(p["mu"]*L_cond*p["h_fg"])
         return Qc - Q
 
     d0, eps0 = 100e-6, 0.55
